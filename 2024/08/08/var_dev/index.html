@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     
+    <meta charset="UTF-8">
+    <title>bingyue_dic 变量文档适配 - 小滨博客</title>
+    <link rel="shortcut icon" href="/static/img/icon.png">
+    <link rel="icon" href="/static/img/icon.png" sizes="192x192"/>
+    
+<link rel="stylesheet" href="/static/kico.css">
+<link rel="stylesheet" href="/static/hingle.css">
+
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1"/>
+    <meta property="og:site_name" content="小滨博客">
+    <meta property="og:title" content="bingyue_dic 变量文档适配"/>
+    
+    <style>body:before{ content: ''; background-image: url(http://cdn.bingyue.top/C00161A369DFC7F9DB245A05448D03CF.jpg) }</style>
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    <header>
+    <div class="head-title">
+        <h4>小滨博客</h4>
+    </div>
+    <div class="head-action">
+        <div class="toggle-btn"></div>
+        <div class="light-btn"></div>
+        <div class="search-btn"></div>
+    </div>
+    <form class="head-search" method="post">
+        <input type="text" name="s" placeholder="搜索什么？">
+    </form>
+    <nav class="head-menu">
+        <a href="/">首页</a>
+        <div class="has-child">
+            <a>分类</a>
+            <div class="sub-menu">
+                <a class="category-link" href="/categories/nonebot%E9%A1%B9%E7%9B%AE/">nonebot项目</a>
+            </div>
+        </div>
+        
+            <a href="/about">关于我</a>
+        
+            <a href="/friends">朋友们</a>
+        
+    </nav>
+</header>
+
+    <main>
+    <div class="wrap min">
+        <section class="post-title">
+            <h2>bingyue_dic 变量文档适配</h2>
+            <div class="post-meta">
+                <time class="date">2024.08.08</time>
+            
+                <span class="category"><a class="category-link" href="/categories/nonebot%E9%A1%B9%E7%9B%AE/">nonebot项目</a></span>
+            
+            </div>
+        </section>
+        <article class="post-content">
+        
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>先来纪念第一天，我为这个bot写的博客，我的<code>bot</code>还在腾讯审核中</p>
+<p>就在前不久，我做了一个<code>bingyue_dic</code>，今天就来给大家讲讲如何适配变量</p>
+<h2 id="在适配之前，请保证你有一定的py基础"><a href="#在适配之前，请保证你有一定的py基础" class="headerlink" title="在适配之前，请保证你有一定的py基础"></a>在适配之前，请保证你有一定的<code>py</code>基础<br><span id="more"></span></h2><h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>你先去我仓库下载最新的源代码-&gt;仓库链接<a target="_blank" rel="noopener" href="https://github.com/bingqiu456/bingyue_dic_new">点我链接</a></p>
+<ul>
+<li><code>git</code>命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/bingqiu456/bingyue_dic_new</span><br></pre></td></tr></table></figure>
+
+<p>下载之后，再从文件夹里找到这两个文件</p>
+<p><img src="https://pic.imgdb.cn/item/66b392c9d9c307b7e9981867.jpg"></p>
+<p>这两个文件，分别是<code>variable_main.py</code>和<code>variable_v.py</code>，也是本词库核心的变量文件</p>
+<hr>
+<p>这里要分成四种情况了</p>
+<ul>
+<li><code>%</code>适配系统变量</li>
+<li><code>%</code>适配高级变量</li>
+<li><code>$</code>适配系统变量</li>
+<li><code>$</code>适配高级变量</li>
+</ul>
+<p>不过啊，在开始之前先讲一下，系统变量和高级变量之间的关系</p>
+<ul>
+<li>系统变量指的是最基础的功能，比如获取<code>QQ</code>号，<code>消息id</code>的，需要提供<code>event</code>函数的事件，高级变量是给第三方开发者准备的，可以写一些扩展性的变量</li>
+</ul>
+<p>这里我就分成两部分去适配变量了</p>
+<hr>
+<h3 id="适配百分号的变量"><a href="#适配百分号的变量" class="headerlink" title="适配百分号的变量"></a>适配百分号的变量</h3><p>这种变量是最容易上手的，因为你不需要传递任何参数，如果你需要传递参数，你可以去看下面的<code>$</code>参数</p>
+<p><strong>1.打开variable_main.py</strong></p>
+<p><img src="https://pic.imgdb.cn/item/66b39489d9c307b7e99bbfad.jpg"></p>
+<p>看到<code>variable</code>的这一部分，这里我分开了<strong>系统变量</strong>和<strong>高级变量</strong>，我们只需要改<strong>高级变量</strong>就行了，忘记说了，<code>p</code>函数是<strong>系统变量</strong>，<code>v</code>函数是<strong>高级变量</strong></p>
+<p>先给我们的变量取个名字，和类名也要取个名字，我这里以名字为<code>test</code>，类名为<code>test_var</code></p>
+<p>因此我们只需要把字典<code>v</code>改成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">v = &#123;</span><br><span class="line">          <span class="string">&quot;%主人%&quot;</span>:<span class="string">&quot;owner_qq&quot;</span>,</span><br><span class="line">          <span class="string">&quot;%time%&quot;</span>:<span class="string">&quot;get_times&quot;</span>,</span><br><span class="line">          <span class="string">&quot;%test%&quot;</span>:<span class="string">&quot;test_var&quot;</span> <span class="comment"># +</span></span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时你要记清楚你的类名，返回到上面的代码，找到<code>class api</code>这一段</p>
+<p><img src="https://pic.imgdb.cn/item/66b3959dd9c307b7e99db1eb.jpg"></p>
+<p>按着这里抄个模板</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@staticmethod</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">test_var</span>(<span class="params">*args</span>): <span class="comment"># 这里类名要改成你自己设置的 </span></span><br><span class="line">    <span class="comment"># 这里可以展开你的代码</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;测试&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>放进去代码</p>
+<p>这样我们的变量就适配完了，在词库里测试一下</p>
+<p><img src="https://pic.imgdb.cn/item/66b396b5d9c307b7e99fbef7.jpg"></p>
+<p>机器人就会回复<code>测试</code></p>
+<p>那么这种变量适配我们就讲完了</p>
+<hr>
+<h3 id="适配-变量"><a href="#适配-变量" class="headerlink" title="适配$变量"></a>适配$变量</h3><p>同样的，我们打开<strong>variable_v.py</strong>这个文件，<code>p</code>和<code>v</code>函数和上面说的一样，但是这里多了<code>false</code>和<code>true</code></p>
+<p>这里的<code>false</code>和<code>true</code>代表是否提供<code>event</code>事件，如果你想获取事件<code>（event）</code>里的一些参数，请改为<code>true</code></p>
+<p>我这里就示范一下吧，取个名字为<code>猜大小</code>，<code>类名为guess_size</code>，<strong>不需要提供任何事件</strong></p>
+<p>在字典<code>v</code>加上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">v = &#123;</span><br><span class="line">    <span class="string">&quot;$管理员$&quot;</span>:[<span class="string">&quot;admin&quot;</span>,<span class="literal">False</span>],</span><br><span class="line">    <span class="string">&quot;$获取消息$&quot;</span>:[<span class="string">&quot;get_message_type&quot;</span>,<span class="literal">True</span>],</span><br><span class="line">    <span class="string">&quot;$猜大小$&quot;</span>:[<span class="string">&quot;guess_size&quot;</span>,<span class="literal">False</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也是同样的操作，在<code>api</code>上添加好类</p>
+<p>给个模板</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@staticmethod</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">guess_size</span>(<span class="params">*args</span>):</span><br><span class="line">    <span class="comment"># .....</span></span><br></pre></td></tr></table></figure>
+
+<p>当然你可能会想，如果我想传两个参数呢，三个参数呢，那如何实现，这个问题问的好，直接用空格控开每个函数就行了</p>
+<p>所以我们的词库可以这样写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">猜大小</span><br><span class="line">$猜大小 10 20 30 40 ....$</span><br></pre></td></tr></table></figure>
+
+<p>然后奇迹就发生了，我们试着打印一下<code>args</code>函数</p>
+<p><img src="https://pic.imgdb.cn/item/66b39fabd9c307b7e9b97e94.jpg"></p>
+<p>可以用遍历直接把字符打印出来，而且不需要写什么复杂的代码，想传多少参数就多少参数</p>
+<p>那我们继续完善一下代码吧</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@staticmethod</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">guess_size</span>(<span class="params">*args</span>):</span><br><span class="line">    i_ = args[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> args:</span><br><span class="line">        i_ = <span class="built_in">max</span>(i_, i)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">str</span>(i_)</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们的猜大小变量就写完了</p>
+<hr>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>请保证你写的变量，最后结果一定要字符串，否则会报错</p>
+
+        </article>
+        <section class="post-near">
+            <ul>
+                
+                    <li>上一篇: 看完啦 (つд⊂)</li>
+                
+                
+                    <li>下一篇: 看完啦 (つд⊂)</li>
+                
+            </ul>
+        </section>
+        
+            <section class="post-tags">
+            <a class="-none-link" href="/tags/dic/" rel="tag">dic</a><a class="-none-link" href="/tags/python/" rel="tag">python</a>
+            </section>
+        
+    
+        <section class="post-author">
+        
+            <figure class="author-avatar">
+                <img src="http://cdn.bingyue.top/b_fcc4b6003dba051ce01f85fffa45038d.jpg" alt="bingyue" />
+            </figure>
+        
+            <div class="author-info">
+                <h4>bingyue</h4>
+                <p>热爱code</p>
+            </div>
+        </section>
+    
+    </div>
+</main>
+
+    <footer>
+    <div class="buttons">
+        <a class="to-top" href="#"></a>
+    </div>
+    <div class="wrap min">
+        <section class="widget">
+            <div class="row">
+                <div class="col-m-4">
+                    <h3 class="title-recent">最新文章：</h3>
+                    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2024/08/08/var_dev/">bingyue_dic 变量文档适配</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-date">时光机：</h3>
+                    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a></li></ul>
+                </div>
+                <div class="col-m-4">
+                    <h3 class="title-tags">标签云：</h3>
+                    <a href="/tags/dic/" style="font-size: 10px;">dic</a> <a href="/tags/python/" style="font-size: 10px;">python</a>
+                </div>
+            </div>
+        </section>
+        <section class="sub-footer">
+            <p>© 2024 <a href="/">小滨博客</a>. All Rights Reserved. Theme By <a href="https://github.com/Dreamer-Paul/Hingle" target="_blank" rel="nofollow">Hingle</a>.</p>
+        </section>
+    </div>
+</footer>
+
+
+<script src="/static/kico.js"></script>
+<script src="/static/hingle.js"></script>
+
+
+<script>var hingle = new Paul_Hingle({"copyright":true,"night":true});</script>
+
+  </body>
+</html>
